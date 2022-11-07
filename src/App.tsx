@@ -5,14 +5,21 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 
-const API_URL = process.env.REACT_APP_API_URL || "";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
 function App() {
     const [data, setData] = React.useState("null");
 
     useEffect(() => {
-        axios(API_URL + '/api/transfer?amount=100&to=jjurenic@mail.com').then((response) => {
-            return response.data;
+        fetch(`${API_URL}/api/transfer?amount=100&to=jjurenic@mail.com`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            }
+        ).then((response) => {
+            return response.json();
         }).then((data) => {
             setData(data);
         });
