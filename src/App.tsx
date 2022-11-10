@@ -9,26 +9,49 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
 function App() {
     const [data, setData] = React.useState("null");
+    const [data1, setData1] = React.useState("null");
 
-    useEffect(() => {
-        fetch(`${API_URL}/api/transfer?amount=100&to=jjurenic@mail.com`, {
-            method: "GET",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-            },
+    const secured = async () => {
+        fetch(`${API_URL}/api/transfer-secure?amount=100&to=jjurenic@mail.com`, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
             }
         ).then((response) => {
             return response.json();
         }).then((data) => {
             setData(data);
         });
-    }, []);
+    }
+
+    const unsecured = async () => {
+        fetch(`${API_URL}/api/transfer?amount=100&to=jjurenic@mail.com`, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        ).then((response) => {
+            return response.json();
+        }).then((data) => {
+            setData1(data);
+        });
+    }
 
   return (
     <div className="App">
-        <img src={money} alt="euri"/>
-      <p>{JSON.stringify(data)}</p>
+        <h1>Najpopularnija stranica za prijenos. 100% SIGURNO ;)</h1>
+        <div style={{display: "flex", flexDirection: "column"}}>
+            {/*<img src={money} alt="euri"/>*/}
+            <button onClick={secured}>Transfer secured</button>
+            <p>Secured response:{JSON.stringify(data)}</p>
+            <button onClick={unsecured}>Transfer unsecured</button>
+            <p>Unsecured response:{JSON.stringify(data1)}</p>
+        </div>
+
     </div>
   );
 }
