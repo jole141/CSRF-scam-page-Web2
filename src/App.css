@@ -36,3 +36,68 @@
     transform: rotate(360deg);
   }
 }
+
+.page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(40rem, 90%);
+}
+
+.button {
+  padding: 0.6rem 0.3rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: dodgerblue;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background: #0d5ea6;
+}
+
+.attack {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: #282c34 2px solid;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
+.users {
+  border: #282c34 2px solid;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.text {
+  text-align: justify;
+}
