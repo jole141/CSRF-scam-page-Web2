@@ -13,7 +13,7 @@ function App() {
 
     const secured = async () => {
         fetch(`${API_URL}/api/transfer-secure?amount=100&to=jjurenic@mail.com`, {
-                method: "GET",
+                method: "POST",
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
